@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Gatsby Experience: Racial Ideology</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,900;1,400&family=Montserrat:wght@300;700&display=swap');
+
+        :root {
+            --gold-light: #fceabb;
+            --gold-main: #f8b500;
+            --gold-dark: #bb8611;
+            --bg-deep: #0a0a0b;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            background-color: var(--bg-deep);
+            color: white;
+            font-family: 'Montserrat', sans-serif;
+            overflow: hidden; /* Prevents the "up and down" scrolling */
+            height: 100vh;
+            width: 100vw;
+        }
+
+        /* ART DECO BACKGROUND ELEMENTS */
+        .deco-bg {
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: 
+                linear-gradient(rgba(0,0,0,0.8), rgba(0,0,0,0.8)),
+                url('https://www.transparenttextures.com/patterns/accent-dots.png');
+            z-index: -1;
+        }
+
+        .gold-frame {
+            position: fixed;
+            top: 20px; left: 20px; right: 20px; bottom: 20px;
+            border: 2px solid var(--gold-dark);
+            pointer-events: none;
+            z-index: 100;
+        }
+
+        /* NAVIGATION MENU - FIXED AT TOP */
+        nav {
+            position: fixed;
+            top: 40px;
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            z-index: 1000;
+        }
+
+        .nav-link {
+            padding: 10px 20px;
+            color: var(--gold-light);
+            border: 1px solid var(--gold-dark);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            cursor: pointer;
+            font-size: 0.7rem;
+            transition: 0.4s;
+            background: rgba(0,0,0,0.5);
+        }
+
+        .nav-link:hover, .nav-link.active {
+            background: var(--gold-main);
+            color: black;
+            box-shadow: 0 0 15px var(--gold-main);
+        }
+
+        /* SECTION SLIDER LOGIC */
+        .slide-container {
+            height: 100vh;
+            width: 100vw;
+            position: relative;
+        }
+
+        section {
+            position: absolute;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 0 15%;
+            text-align: center;
+            opacity: 0;
+            visibility: hidden;
+            transform: scale(1.1) translateY(20px);
+            transition: all 0.8s cubic-bezier(0.22, 1, 0.36, 1);
+        }
+
+        section.active {
+            opacity: 1;
+            visibility: visible;
+            transform: scale(1) translateY(0);
+        }
+
+        /* TYPOGRAPHY & STYLE */
+        h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 5vw;
+            color: var(--gold-main);
+            text-transform: uppercase;
+            line-height: 1;
+            margin-bottom: 20px;
+            background: linear-gradient(to right, #fceabb 0%, #f8b500 50%, #bb8611 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .subtitle {
+            font-size: 1.2rem;
+            letter-spacing: 5px;
+            color: #888;
+            margin-bottom: 30px;
+        }
+
+        .glass-card {
+            background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(10px);
+            padding: 50px;
+            border: 1px solid rgba(212, 175, 55, 0.2);
+            border-radius: 5px;
+            max-width: 800px;
+        }
+
+        p {
+            font-size: 1.2rem;
+            line-height: 1.6;
+            color: #ddd;
+        }
+
+        .authors {
+            margin-top: 20px;
+            font-size: 0.9rem;
+            color: var(--gold-main);
+        }
+
+    </style>
+</head>
+<body>
+
+    <div class="deco-bg"></div>
+    <div class="gold-frame"></div>
+
+    <nav>
+        <div class="nav-link active" onclick="showSlide('home', this)">Home</div>
+        <div class="nav-link" onclick="showSlide('era1920', this)">1920s</div>
+        <div class="nav-link" onclick="showSlide('era2020', this)">2020s</div>
+        <div class="nav-link" onclick="showSlide('comparison', this)">Comparison</div>
+        <div class="nav-link" onclick="showSlide('verdict', this)">The Verdict</div>
+    </nav>
+
+    <div class="slide-container">
+        
+        <section id="home" class="active">
+            <p class="subtitle">A SOCIO-CULTURAL RESEARCH PAPER</p>
+            <h1>RACIAL IDEOLOGY</h1>
+            <p class="subtitle">The Great Gatsby vs. Modern Reality</p>
+            <div class="authors">Salma • Yuan • Youssef M • Youssef F • Maryam</div>
+        </section>
+
+        <section id="era1920">
+            <div class="glass-card">
+                <h1>THE 1920s</h1>
+                <p>The decade of Jazz and prohibition was built on a belief that white superiority was the natural order[cite: 35, 38]. While wealth grew, <span style="color:var(--gold-main)">Jim Crow laws</span> enforced segregation, keeping success as a prize for white Americans only[cite: 39, 44].</p>
+            </div>
+        </section>
+
+        <section id="era2020">
+            <div class="glass-card">
+                <h1>THE 2020s</h1>
+                <p>Today, racism is no longer "open" like Tom Buchanan's; it is <span style="color:var(--gold-main)">systemic</span>[cite: 46, 47]. It hides in housing codes, school funding, and hiring practices, acting as invisible hurdles in the race for the American Dream[cite: 48, 54].</p>
+            </div>
+        </section>
+
+        <section id="comparison">
+            <div class="glass-card">
+                <h1>WHAT CHANGED?</h1>
+                <p>Progress has been made, but the division remains[cite: 69]. The 1920s used laws to exclude; the 2020s uses structures[cite: 66, 67]. Both eras share the same conflict: who truly belongs in America[cite: 68]?</p>
+            </div>
+        </section>
+
+        <section id="verdict">
+            <div class="glass-card">
+                <h1>THE VERDICT</h1>
+                <p>Fitzgerald’s novel suggests that the American Dream is structured to keep true success out of reach for most[cite: 79]. Success today is still linked to influence and background rather than pure effort[cite: 73, 77].</p>
+                <div class="authors" style="margin-top:40px; border: 1px solid var(--gold-main); padding: 10px;">The End</div>
+            </div>
+        </section>
+
+    </div>
+
+    <script>
+        function showSlide(id, btn) {
+            // Remove active classes
+            document.querySelectorAll('section').forEach(s => s.classList.remove('active'));
+            document.querySelectorAll('.nav-link').forEach(n => n.classList.remove('active'));
+
+            // Set new active slide
+            document.getElementById(id).classList.add('active');
+            
+            // Set new active button
+            btn.classList.add('active');
+        }
+    </script>
+</body>
+</html>
