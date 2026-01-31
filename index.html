@@ -3,76 +3,93 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>The Gatsby Experience: Racial Ideology</title>
+    <title>The Gilded Age: Racial Ideology</title>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,900;1,400&family=Montserrat:wght@300;700&display=swap');
 
         :root {
-            --gold-light: #fceabb;
-            --gold-main: #f8b500;
-            --gold-dark: #bb8611;
-            --bg-deep: #0a0a0b;
+            --gold-bright: #fff38a;
+            --gold-main: #d4af37;
+            --gold-deep: #8b6e23;
+            --cream: #fffdf5;
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; }
 
         body {
-            background-color: var(--bg-deep);
+            /* VIBRANT GRADIENT BACKGROUND */
+            background: radial-gradient(circle at center, #2c2411 0%, #0a0a0b 100%);
             color: white;
             font-family: 'Montserrat', sans-serif;
-            overflow: hidden; /* Prevents the "up and down" scrolling */
+            overflow: hidden;
             height: 100vh;
             width: 100vw;
         }
 
-        /* ART DECO BACKGROUND ELEMENTS */
-        .deco-bg {
+        /* ANIMATED SHIMMER LAYER */
+        .shimmer-layer {
             position: absolute;
             top: 0; left: 0; width: 100%; height: 100%;
-            background: 
-                linear-gradient(rgba(0,0,0,0.8), rgba(0,0,0,0.8)),
-                url('https://www.transparenttextures.com/patterns/accent-dots.png');
+            background: url('https://www.transparenttextures.com/patterns/pinstriped-suit.png');
+            opacity: 0.2;
             z-index: -1;
         }
 
+        /* FLOATING ART DECO SHAPES */
+        .shape {
+            position: absolute;
+            border: 1px solid var(--gold-main);
+            opacity: 0.15;
+            animation: float 20s infinite linear;
+            z-index: -1;
+        }
+
+        @keyframes float {
+            0% { transform: rotate(0deg) translate(0, 0); }
+            100% { transform: rotate(360deg) translate(50px, 100px); }
+        }
+
+        /* THE GOLD FRAME */
         .gold-frame {
             position: fixed;
-            top: 20px; left: 20px; right: 20px; bottom: 20px;
-            border: 2px solid var(--gold-dark);
+            top: 15px; left: 15px; right: 15px; bottom: 15px;
+            border: 4px double var(--gold-main);
             pointer-events: none;
             z-index: 100;
         }
 
-        /* NAVIGATION MENU - FIXED AT TOP */
+        /* NAV STYLING */
         nav {
             position: fixed;
             top: 40px;
             width: 100%;
             display: flex;
             justify-content: center;
-            gap: 15px;
+            gap: 10px;
             z-index: 1000;
         }
 
         .nav-link {
-            padding: 10px 20px;
-            color: var(--gold-light);
-            border: 1px solid var(--gold-dark);
+            padding: 8px 18px;
+            color: var(--gold-bright);
+            border: 1px solid var(--gold-main);
             text-transform: uppercase;
             letter-spacing: 2px;
             cursor: pointer;
-            font-size: 0.7rem;
-            transition: 0.4s;
-            background: rgba(0,0,0,0.5);
+            font-size: 0.75rem;
+            transition: all 0.3s ease;
+            background: rgba(44, 36, 17, 0.8);
+            box-shadow: 0 4px 15px rgba(0,0,0,0.3);
         }
 
         .nav-link:hover, .nav-link.active {
             background: var(--gold-main);
-            color: black;
-            box-shadow: 0 0 15px var(--gold-main);
+            color: #1a1a1a;
+            transform: translateY(-2px);
+            box-shadow: 0 0 20px var(--gold-main);
         }
 
-        /* SECTION SLIDER LOGIC */
+        /* SECTION ANIMATIONS */
         .slide-container {
             height: 100vh;
             width: 100vw;
@@ -81,117 +98,110 @@
 
         section {
             position: absolute;
-            top: 0; left: 0;
             width: 100%; height: 100%;
             display: flex;
             flex-direction: column;
             justify-content: center;
             align-items: center;
-            padding: 0 15%;
+            padding: 0 10%;
             text-align: center;
             opacity: 0;
             visibility: hidden;
-            transform: scale(1.1) translateY(20px);
-            transition: all 0.8s cubic-bezier(0.22, 1, 0.36, 1);
+            transition: 1s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
         section.active {
             opacity: 1;
             visibility: visible;
-            transform: scale(1) translateY(0);
+            transform: scale(1);
         }
 
-        /* TYPOGRAPHY & STYLE */
+        /* TYPOGRAPHY */
         h1 {
             font-family: 'Playfair Display', serif;
-            font-size: 5vw;
-            color: var(--gold-main);
-            text-transform: uppercase;
-            line-height: 1;
+            font-size: 5rem;
             margin-bottom: 20px;
-            background: linear-gradient(to right, #fceabb 0%, #f8b500 50%, #bb8611 100%);
+            background: linear-gradient(to bottom, var(--gold-bright), var(--gold-main), var(--gold-deep));
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
-        }
-
-        .subtitle {
-            font-size: 1.2rem;
-            letter-spacing: 5px;
-            color: #888;
-            margin-bottom: 30px;
+            filter: drop-shadow(0 5px 15px rgba(0,0,0,0.5));
         }
 
         .glass-card {
-            background: rgba(255, 255, 255, 0.03);
-            backdrop-filter: blur(10px);
-            padding: 50px;
-            border: 1px solid rgba(212, 175, 55, 0.2);
-            border-radius: 5px;
-            max-width: 800px;
+            background: rgba(255, 253, 245, 0.07);
+            backdrop-filter: blur(12px);
+            padding: 60px;
+            border-top: 3px solid var(--gold-main);
+            border-bottom: 3px solid var(--gold-main);
+            max-width: 900px;
+            box-shadow: 0 30px 60px rgba(0,0,0,0.4);
         }
 
         p {
-            font-size: 1.2rem;
-            line-height: 1.6;
-            color: #ddd;
+            font-size: 1.3rem;
+            line-height: 1.8;
+            color: #efefef;
+            font-weight: 300;
         }
 
-        .authors {
-            margin-top: 20px;
-            font-size: 0.9rem;
+        .highlight {
             color: var(--gold-main);
+            font-weight: bold;
+            text-shadow: 0 0 10px rgba(212, 175, 55, 0.5);
         }
 
     </style>
 </head>
 <body>
 
-    <div class="deco-bg"></div>
+    <div class="shimmer-layer"></div>
     <div class="gold-frame"></div>
+    
+    <div class="shape" style="width:200px; height:200px; top:10%; left:5%;"></div>
+    <div class="shape" style="width:150px; height:300px; bottom:10%; right:10%; border-radius:50%;"></div>
+    <div class="shape" style="width:100px; height:100px; top:50%; left:80%;"></div>
 
-    <nav>
-        <div class="nav-link active" onclick="showSlide('home', this)">Home</div>
-        <div class="nav-link" onclick="showSlide('era1920', this)">1920s</div>
-        <div class="nav-link" onclick="showSlide('era2020', this)">2020s</div>
-        <div class="nav-link" onclick="showSlide('comparison', this)">Comparison</div>
-        <div class="nav-link" onclick="showSlide('verdict', this)">The Verdict</div>
+    <nav id="navbar">
+        <div class="nav-link active" onclick="showSlide('home', this)">Front</div>
+        <div class="nav-link" onclick="showSlide('context', this)">The Idea</div>
+        <div class="nav-link" onclick="showSlide('gatsby', this)">Tom & 1920s</div>
+        <div class="nav-link" onclick="showSlide('modern', this)">Modern Day</div>
+        <div class="nav-link" onclick="showSlide('dream', this)">The Dream</div>
     </nav>
 
     <div class="slide-container">
         
         <section id="home" class="active">
-            <p class="subtitle">A SOCIO-CULTURAL RESEARCH PAPER</p>
-            <h1>RACIAL IDEOLOGY</h1>
-            <p class="subtitle">The Great Gatsby vs. Modern Reality</p>
-            <div class="authors">Salma • Yuan • Youssef M • Youssef F • Maryam</div>
+            <h1 style="font-size: 6rem;">RACIAL IDEOLOGY</h1>
+            <p style="letter-spacing: 15px; color: var(--gold-main);">THE 1920s VS. THE 2020s</p>
+            <p style="margin-top: 40px; font-size: 1rem;">SALMA • YUAN • YOUSSEF M • YOUSSEF F • MARYAM [cite: 5]</p>
         </section>
 
-        <section id="era1920">
+        <section id="context">
             <div class="glass-card">
-                <h1>THE 1920s</h1>
-                <p>The decade of Jazz and prohibition was built on a belief that white superiority was the natural order[cite: 35, 38]. While wealth grew, <span style="color:var(--gold-main)">Jim Crow laws</span> enforced segregation, keeping success as a prize for white Americans only[cite: 39, 44].</p>
+                <h1 style="font-size: 3rem;">WHAT IS IT?</h1>
+                <p>Racialized ideology is the belief that <span class="highlight">race determines value</span>[cite: 36]. In the 1920s, this was a tool used to protect power and privilege[cite: 36]. Today, it has evolved into a system that is hidden but still keeps true success out of reach[cite: 46, 79].</p>
             </div>
         </section>
 
-        <section id="era2020">
+        <section id="gatsby">
             <div class="glass-card">
-                <h1>THE 2020s</h1>
-                <p>Today, racism is no longer "open" like Tom Buchanan's; it is <span style="color:var(--gold-main)">systemic</span>[cite: 46, 47]. It hides in housing codes, school funding, and hiring practices, acting as invisible hurdles in the race for the American Dream[cite: 48, 54].</p>
+                <h1 style="font-size: 3rem;">THE BUCHANAN MINDSET</h1>
+                <p>In *The Great Gatsby*, Tom Buchanan represents the <span class="highlight">racial fear</span> of his era[cite: 37]. He believed white people were losing control, reflecting the real-world Jim Crow laws that enforced segregation to keep wealth in white hands[cite: 37, 39, 42].</p>
             </div>
         </section>
 
-        <section id="comparison">
+        <section id="modern">
             <div class="glass-card">
-                <h1>WHAT CHANGED?</h1>
-                <p>Progress has been made, but the division remains[cite: 69]. The 1920s used laws to exclude; the 2020s uses structures[cite: 66, 67]. Both eras share the same conflict: who truly belongs in America[cite: 68]?</p>
+                <h1 style="font-size: 3rem;">SYSTEMIC HURDLES</h1>
+                <p>Racism in the 2020s is <span class="highlight">structural</span>[cite: 67]. It’s built into how schools are funded and how people are hired[cite: 48]. While progress has been made since the 1920s, inequality is simply more hidden now[cite: 46, 69].</p>
             </div>
         </section>
 
-        <section id="verdict">
+        <section id="dream">
             <div class="glass-card">
-                <h1>THE VERDICT</h1>
-                <p>Fitzgerald’s novel suggests that the American Dream is structured to keep true success out of reach for most[cite: 79]. Success today is still linked to influence and background rather than pure effort[cite: 73, 77].</p>
-                <div class="authors" style="margin-top:40px; border: 1px solid var(--gold-main); padding: 10px;">The End</div>
+                <h1 style="font-size: 3rem;">THE AMERICAN DREAM</h1>
+                <p>Fitzgerald concluded that the Dream is <span class="highlight">deeply unfair</span>[cite: 79]. Though it promises success to anyone who works hard, the system still favors those with existing advantages[cite: 77, 79]. It remains a race with unequal hurdles[cite: 54].</p>
             </div>
         </section>
 
@@ -199,14 +209,9 @@
 
     <script>
         function showSlide(id, btn) {
-            // Remove active classes
             document.querySelectorAll('section').forEach(s => s.classList.remove('active'));
             document.querySelectorAll('.nav-link').forEach(n => n.classList.remove('active'));
-
-            // Set new active slide
             document.getElementById(id).classList.add('active');
-            
-            // Set new active button
             btn.classList.add('active');
         }
     </script>
